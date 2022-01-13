@@ -199,7 +199,7 @@ Switch ($Command)
 			}
 
 			Write-Host "You can now chose an ID from the list, and export credentials as an executable import command with:"
-			Write-Hosts
+			Write-Host
 			Write-Host "./$scriptName -command Export -id <id>"
 		}
 
