@@ -120,7 +120,7 @@ function EncryptPassword  {
 }
 
 # Test if System.Data.SQLite.dll is available
-$sqlitedll = "..\System.Data.SQLite.dll"
+$sqlitedll = ".\System.Data.SQLite.dll"
 
 if (!(Test-Path -Path $sqlitedll))
 {
