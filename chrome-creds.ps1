@@ -9,7 +9,8 @@
 
   History:
 
-  **13-Jan-2021 v.1.0.0**: add capability to extract and re-import credentials into the store.
+  **13-Jan-2022 v.1.0.0**: add capability to extract and re-import credentials into the store.
+  **04-Feb-2022 v.1.0.1**: add ability to specify LocalAppData path via param.
 
   [1] https://xenarmor.com/how-to-recover-saved-passwords-google-chrome/
   [2] https://jhoneill.github.io/powershell/2020/11/23/Chrome-Passwords.html
@@ -30,8 +31,9 @@
 
 using namespace "System.Security.Cryptography"
 param (
-	$LoginDataPath = (Get-ChildItem Env:\LOCALAPPDATA).Value+"\Google\Chrome\User Data\Default\Login Data",
-    $LocalStatePath = (Join-path (Split-path (Split-Path $LoginDataPath)) 'Local State'),
+	$LocalAppDataPath = (Get-ChildItem Env:\LOCALAPPDATA).Value,
+	$LoginDataPath = "$LocalAppDataPath\Google\Chrome\User Data\Default\Login Data",
+	$LocalStatePath = "$LocalAppDataPath\Google\Chrome\User Data\Local State",
 
 	$Command = "List", # Can be List, Export, or Import
 
@@ -59,12 +61,17 @@ param (
 	$moving_blocked_for = '00000000'
 )
 
-$scriptVersion = "1.0.0"
+$scriptVersion = "1.0.1"
 $scriptName = $MyInvocation.MyCommand.Name
 $scriptPath = (Get-Item .).FullName
 
 Write-Host
 Write-Host "chrome-creds ${scriptVersion} made with <3 by Marco Simioni <marcosim@ie.ibm.com>"
+Write-Host
+
+Write-Host "LocalAppDataPath: $LocalAppDataPath"
+Write-Host "LoginDataPath: $LoginDataPath"
+Write-Host "LocalStatePath: $LocalStatePath"
 Write-Host
 
 # Get the master key and use it to create a AesGCcm object for decoding
