@@ -11,6 +11,7 @@
 
   **13-Jan-2022 v.1.0.0**: add capability to extract and re-import credentials into the store.
   **04-Feb-2022 v.1.0.1**: add ability to specify LocalAppData path via param.
+  **08-Feb-2022 v.1.0.2**: add command to delete all credentials.
 
   [1] https://xenarmor.com/how-to-recover-saved-passwords-google-chrome/
   [2] https://jhoneill.github.io/powershell/2020/11/23/Chrome-Passwords.html
@@ -61,7 +62,7 @@ param (
 	$moving_blocked_for = '00000000'
 )
 
-$scriptVersion = "1.0.1"
+$scriptVersion = "1.0.2"
 $scriptName = $MyInvocation.MyCommand.Name
 $scriptPath = (Get-Item .).FullName
 
@@ -310,6 +311,21 @@ Switch ($Command)
 			$cmd.dispose()
 
 			Write-Host "...credential imported!"
+
+		}
+
+		"Delete" {
+			Write-Host "Deleting all credentials..."
+
+			$cmd = $conn.CreateCommand()
+
+			$sql = "DELETE FROM main.logins"
+			$cmd.CommandText = $sql
+			$res = $cmd.ExecuteNonQuery()
+
+			$cmd.dispose()
+
+			Write-Host "...all credentials deleted!"
 
 		}
 }
