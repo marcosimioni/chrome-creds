@@ -123,7 +123,10 @@ function EncryptPassword  {
         }
         else {[string]::new([ProtectedData]::Protect($Unencrypted, $null, 'CurrentUser')) }
     }
-    catch {Write-Warning "Error encrypting password ${Unencrypted}"}
+    catch {
+		Write-Warning "Error encrypting password ${Unencrypted}"
+		Write-Warning $_
+	}
 }
 
 # Test if System.Data.SQLite.dll is available
