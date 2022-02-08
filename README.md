@@ -8,9 +8,9 @@ Tested on Windows 10 Enterprise, Version 20H2, OS Build 19042.1466, and Chrome V
 
 History:  
 
-**13-Jan-2021 v.1.0.0**: add capability to extract and re-import credentials into the store.
-**04-Feb-2022 v.1.0.1**: add ability to specify LocalAppData path via param.
-**08-Feb-2022 v.1.0.2**: add command to delete all credentials.
+**13-Jan-2021 v.1.0.0**: add capability to extract and re-import credentials into the store.  
+**04-Feb-2022 v.1.0.1**: add ability to specify LocalAppData path via param.  
+**08-Feb-2022 v.1.0.2**: add command to delete all credentials.  
 
 [1] https://xenarmor.com/how-to-recover-saved-passwords-google-chrome/  
 [2] https://jhoneill.github.io/powershell/2020/11/23/Chrome-Passwords.html
